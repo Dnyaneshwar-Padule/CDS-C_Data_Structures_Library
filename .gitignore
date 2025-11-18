@@ -57,4 +57,4 @@ dkms.conf
 #vs-code metadata
 /.vscode
 
-*.txt
+structure.txt
