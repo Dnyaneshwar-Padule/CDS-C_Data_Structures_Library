@@ -56,3 +56,5 @@ dkms.conf
 
 #vs-code metadata
 /.vscode
+
+.txt
