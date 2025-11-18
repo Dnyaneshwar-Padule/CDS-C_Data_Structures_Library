@@ -1,0 +1,49 @@
+cds/
+│
+├── include/
+│   └── cds/
+│       ├── list.h
+│       ├── vector.h
+│       ├── stack.h
+│       ├── queue.h
+│       ├── hashmap.h
+│       ├── set.h
+│       ├── tree.h
+│       ├── heap.h
+│       ├── utils.h
+│       └── cds.h        ← master header (includes all headers)
+│
+├── src/
+│   ├── list.c
+│   ├── vector.c
+│   ├── stack.c
+│   ├── queue.c
+│   ├── hashmap.c
+│   ├── set.c
+│   ├── tree.c
+│   ├── heap.c
+│   └── utils.c
+│
+├── tests/
+│   ├── test_list.c
+│   ├── test_vector.c
+│   ├── test_hashmap.c
+│   └── ... (each DS ka separate test)
+│
+├── examples/
+│   ├── example_list.c
+│   ├── example_vector.c
+│   ├── example_queue.c
+│   └── ... (documentation ke examples)
+│
+├── docs/
+│   ├── list.md
+│   ├── vector.md
+│   ├── hashmap.md
+│   └── ... (API documentation)
+│
+├── build/        ← compilation output (object files, binaries)
+│
+├── Makefile
+├── LICENSE
+└── README.md
