@@ -3,63 +3,71 @@
 #include<string.h>
 #include "../include/stack.h"
 
-
-int stack_is_empty(stack_node *top){
-    return top == BOTTOM;
+void init(stack * s){
+    if(s)s->top = NULL;
 }
 
-stack_node* stack_push(stack_node* top, const void* data, size_t size){
+int stack_is_empty(stack *s){
+    if(! s) return 0;
+    return s->top == BOTTOM;
+}
+
+stack* stack_push(stack* s, const void* data, size_t size){
+    if(! s ) return NULL;
     stack_node* new_node = NEW_NODE();    
     if(! new_node){
         fprintf(stderr, "stack_node is full !\n");
-        return top;
+        return s;
     }
 
     new_node->data = malloc(size);
     if( !new_node->data ){
         fprintf(stderr, "Unable to allocate memory for data !\n");
         free(new_node);
-        return top;
+        return s;
     }
     memcpy(new_node->data, data, size);
     new_node->next = NULL;
     new_node->previous = NULL;
 
-    if(stack_is_empty(top)){
-        top = new_node;
-        return top;
+    if(stack_is_empty(s)){
+        s->top = new_node;
+        return s;
     }
 
     // Adding new node at first
-    new_node->next = top;
-    top->previous = new_node;
-    top = new_node;
-    return top;
+    new_node->next = s->top;
+    s->top->previous = new_node;
+    s->top = new_node;
+    return s;
 }
 
-void* stack_pop(stack_node** top){
-    if(stack_is_empty(*top)){
+void* stack_pop(stack* s){
+    if(! s ) return NULL;
+    if(stack_is_empty(s)){
         return NULL;
     }
 
-    stack_node* prev = *top;
-    void *data = (*top)->data;
-    (*top) = (*top)->next;
-    if(*top) (*top)->previous = NULL;
+    stack_node* prev = s->top;
+    void *data = (s->top)->data;
+    (s->top) = (s->top)->next;
+    if(s->top) (s->top)->previous = NULL;
     free(prev);
     return data;
 }
 
-void* stack_peek(stack_node* top){
-    if(stack_is_empty(top)) return NULL;
-    return top->data;
+void* stack_peek(stack* s){
+    if(! s) return NULL;
+    if(stack_is_empty(s)) return NULL;
+    return s->top->data;
 }
 
-int stack_search(stack_node* top, const void* data, int (*compare)(const void*, const void*)){
-    if(stack_is_empty(top)) return -1;
+int stack_search(stack* s, const void* data, int (*compare)(const void*, const void*)){
+    if(! s) return -1;
+    if(stack_is_empty(s)) return -1;
 
     int index_of_target_node = -1, index = 1;
-    stack_node* traverser = top;
+    stack_node* traverser = s->top;
 
     while(traverser){
         if( compare(data, traverser->data) == 0 ){
@@ -73,21 +81,22 @@ int stack_search(stack_node* top, const void* data, int (*compare)(const void*, 
     return index_of_target_node ;
 }
 
-void stack_clear(stack_node** top){
-     stack_node *current = *top;
-    while(*top){
-        current = *top;
-        *top = (*top)->next;
+void stack_clear(stack* s){
+    if(! s) return;
+    stack_node *current = s->top;
+    while(s->top){
+        current = s->top;
+        s->top = s->top->next;
         free(current->data);
         free(current);
     }
-    *top = BOTTOM;
+    init(s);
 }
 
-unsigned int stack_length(stack_node *top){
+unsigned int stack_length(stack *s){
     unsigned int length = 0;
 
-    stack_node *current = top;
+    stack_node *current = s->top;
     
     while (current){
         length++;

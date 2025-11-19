@@ -8,12 +8,18 @@ struct stack_node{
     struct stack_node *next;
 };
 
-typedef struct stack_node stack_node;
+struct stack{
+    struct stack_node *top;
+};
 
-stack_node* stack_push(stack_node* top, const void* data, size_t size);
-void* stack_pop(stack_node** top);
-void* stack_peek(stack_node* top);
-int stack_is_empty(stack_node* top);
-int stack_search(stack_node* top, const void* data, int (*compare)(const void*, const void*));
-void stack_clear(stack_node** top);
-unsigned int stack_length(stack_node *top);
+typedef struct stack_node stack_node;
+typedef struct stack stack;
+
+void init(stack* s);
+stack* stack_push(stack* s, const void* data, size_t size);
+void* stack_pop(stack* s);
+void* stack_peek(stack* s);
+int stack_is_empty(stack* s);
+int stack_search(stack* s, const void* data, int (*compare)(const void*, const void*));
+void stack_clear(stack* s);
+unsigned int stack_length(stack *s);
