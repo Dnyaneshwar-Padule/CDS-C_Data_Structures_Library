@@ -1,3 +1,5 @@
+/*
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<string>
@@ -9,7 +11,12 @@ struct circular_list_node{
     struct circular_list_node* next;
 };
 
-typedef struct node circular_list_node;
+struct circular_linked_list{
+    struct circular_list_node *head;
+};
+
+typedef struct circular_list_node circular_list_node;
+typedef struct circular_linked_list circular_linked_list;
 
 circular_list_node* list_insert(circular_list_node* head, const void *data, size_t size);
 circular_list_node* list_insert_first(circular_list_node* head, const void* data, size_t size);
@@ -35,3 +42,5 @@ circular_list_node* list_clone(circular_list_node* head, size_t size);
 circular_list_node* list_append(circular_list_node* head1, circular_list_node* head2);
 void list_clear(circular_list_node * head);
 unsigned int list_length(circular_list_node* head);
+
+*/
