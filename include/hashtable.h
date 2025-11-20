@@ -25,11 +25,12 @@ typedef struct hash_table hash_table;
 
 void hash_table_init(hash_table *ht, unsigned int initial_table_length);
 void hash_table_clear(hash_table *ht);
-int hash_table_put(hash_table* ht, const void *key, size_t key_size, const void *value, size_t value_size, unsigned int  (*hash)(const void* key), int (*compare)(const void *, const void*));
-int hash_table_contains_key(hash_table* ht, const void *key, unsigned int (*hash)(const void*), int (*compare)(const void *, const void*));
-int hash_table_remove(hash_table *ht, const void *key, unsigned int (*hash)(const void*), int (*compare)(const void *, const void*));
-void* hash_table_get(hash_table *ht, const void *key, unsigned int (*hash)(const void *), int (*compare)(const void *, const void*));
+int hash_table_put(hash_table* ht, const void *key, size_t key_size, const void *value, size_t value_size, unsigned int  (*hash)(const void*, int), int (*compare)(const void *, const void*));
+int hash_table_contains_key(hash_table* ht, const void *key, unsigned int  (*hash)(const void*, int), int (*compare)(const void *, const void*));
+int hash_table_remove(hash_table *ht, const void *key, unsigned int  (*hash)(const void*, int), int (*compare)(const void *, const void*));
+void* hash_table_get(hash_table *ht, const void *key, unsigned int  (*hash)(const void*, int), int (*compare)(const void *, const void*));
+unsigned int hash_table_size(hash_table *ht);
+void rehash(hash_table* ht, unsigned int  (*hash)(const void*, int));
 
 // clone()
-// rehash()
 // containsValue()

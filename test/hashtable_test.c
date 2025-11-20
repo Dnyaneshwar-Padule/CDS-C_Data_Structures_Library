@@ -6,8 +6,8 @@
 
 hash_table ht;
 
-unsigned int hash(const void *key){
-    return *((int*)key) % ht.length;
+unsigned int hash(const void *key, int len){
+    return *((int*)key) % len;
 }
 
 int compare(const void *a, const void *b){
