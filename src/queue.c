@@ -92,7 +92,7 @@ void queue_free(Queue **queue){
         free(current->data);
         free(current);
     }
-    free(queue);
+    free(*queue);
     *queue = NULL;
 }
 

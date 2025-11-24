@@ -102,7 +102,7 @@ int main() {
 
 
     printf("----- CLEAR -----\n");
-    doubly_list_clear(d_linked_list);
+    doubly_list_clear(&d_linked_list);
     printf("List cleared.\n");
 
     return 0;

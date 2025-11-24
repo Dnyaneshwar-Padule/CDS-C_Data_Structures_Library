@@ -114,12 +114,12 @@ void* hash_table_get(hash_table *ht, const void *key, unsigned int  (*hash)(cons
     return NULL;
 }
 
-void hash_table_clear(hash_table *ht){
-    if ( ! ht || ! ht->table ) return;
+void hash_table_clear(hash_table **ht){
+    if ( ! ht || ! (*ht)->table ) return;
     node *current = NULL, *previous = NULL;
 
-    for(int i = 0; i < ht->length; i++){
-        current = ht->table[i].head;
+    for(int i = 0; i < (*ht)->length; i++){
+        current = (*ht)->table[i].head;
         while (current){
             previous = current;
             current = current->next;
@@ -128,7 +128,9 @@ void hash_table_clear(hash_table *ht){
             free(previous);
         }
     }
-    free(ht);
+    free((*ht)->table);
+    free(*ht);
+    *ht = NULL;
 }
 
 int hash_table_contains_key(hash_table* ht, const void *key, unsigned int  (*hash)(const void*, int), int (*compare)(const void *, const void*)){

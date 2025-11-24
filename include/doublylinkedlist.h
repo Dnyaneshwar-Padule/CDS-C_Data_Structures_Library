@@ -42,5 +42,5 @@ doubly_linked_list* doubly_list_update(doubly_linked_list* d_linked_list, const 
 doubly_linked_list* doubly_list_reverse(doubly_linked_list* d_linked_list);
 doubly_linked_list* doubly_list_clone(doubly_linked_list *dest, doubly_linked_list* src, size_t size);
 doubly_linked_list* doubly_list_append(doubly_linked_list* d_linked_list1, doubly_linked_list* d_linked_list2);
-void doubly_list_clear(doubly_linked_list * d_linked_list);
+void doubly_list_clear(doubly_linked_list **d_linked_list);
 unsigned int doubly_list_length(doubly_linked_list* d_linked_list);

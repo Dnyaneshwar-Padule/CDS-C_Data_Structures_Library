@@ -114,7 +114,7 @@ int main() {
 
 
     printf("----- CLEAR -----\n");
-    list_clear(l_list);
+    list_clear(&l_list);
     printf("List cleared.\n");
 
     return 0;

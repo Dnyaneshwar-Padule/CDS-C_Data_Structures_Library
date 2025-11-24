@@ -341,16 +341,17 @@ linked_list* list_reverse(linked_list* l_list){
     return l_list;
 }
 
-void list_clear(linked_list * l_list){
-    if(! l_list) return;
-    list_node* current = l_list->head;
-    while(l_list->head){
-        current = l_list->head;
-        l_list->head = l_list->head->next;
+void list_clear(linked_list **l_list){
+    if(! l_list || ! (*l_list)) return;
+    list_node* current = (*l_list)->head;
+    while((*l_list)->head){
+        current = (*l_list)->head;
+        (*l_list)->head = (*l_list)->head->next;
         free(current->data);
         free(current);
     }
-    free(l_list);
+    free(*l_list);
+    *l_list = NULL;
 }
 
 linked_list* list_clone(linked_list* dest, linked_list* src, size_t size){

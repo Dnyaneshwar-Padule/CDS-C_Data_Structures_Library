@@ -330,16 +330,17 @@ doubly_linked_list* doubly_list_append(doubly_linked_list* d_linked_list1, doubl
     return d_linked_list1;
 }
 
-void doubly_list_clear(doubly_linked_list * d_linked_list){
-    if(! d_linked_list) return;
-    doubly_list_node *current = d_linked_list->head;
-    while(d_linked_list->head){
-        current = d_linked_list->head;
-        d_linked_list->head = d_linked_list->head->next;
+void doubly_list_clear(doubly_linked_list ** d_linked_list){
+    if(! d_linked_list || ! (*d_linked_list)) return;
+    doubly_list_node *current = (*d_linked_list)->head;
+    while((*d_linked_list)->head){
+        current = (*d_linked_list)->head;
+        (*d_linked_list)->head = (*d_linked_list)->head->next;
         free(current->data);
         free(current);
     }
-    free(d_linked_list);
+    free(*d_linked_list);
+    *d_linked_list = NULL;
 }
 
 unsigned int doubly_list_length(doubly_linked_list* d_linked_list){

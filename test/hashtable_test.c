@@ -140,7 +140,7 @@ int main(){
         printf("%d | ", ht->table[i].length);
     }printf("\n");
 
-    hash_table_clear(ht);
+    hash_table_clear(&ht);
     printf("Hash table cleared...\n");
     return 0;
 }

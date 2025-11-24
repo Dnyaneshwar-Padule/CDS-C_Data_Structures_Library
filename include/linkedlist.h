@@ -13,7 +13,7 @@ typedef struct list_node list_node;
 typedef struct linked_list linked_list;
 
 linked_list* list_init();
-void list_clear(linked_list * l_list);
+void list_clear(linked_list **l_list);
 
 linked_list* list_insert(linked_list* l_list, const void *data, size_t size);
 linked_list* list_insert_first(linked_list* l_list, const void* data, size_t size);
