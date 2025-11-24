@@ -100,7 +100,6 @@ int main() {
     print_list(d_linked_list->head);
     printf("\n");
 
-
     printf("----- CLEAR -----\n");
     doubly_list_clear(&d_linked_list);
     printf("List cleared.\n");

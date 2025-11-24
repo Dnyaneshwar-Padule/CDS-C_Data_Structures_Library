@@ -24,6 +24,13 @@ typedef struct hash_set hash_set;
 hash_set* hash_set_init(unsigned int initial_size);
 void hash_set_clear(hash_set **hs);
 
+int hash_set_put(hash_set* hs, const void *key, size_t key_size, unsigned int(*hash)(const void*, int) ,int (*compare)(const void*, const void*));
+
+/**
+ * @brief This function creates a hash_set of minimum size 3
+ * @param initial_size The initial size of the hash set
+ * @return hash_set* on success, NULL otherwise  
+ */
 hash_set* hash_set_init(unsigned int initial_size){
     if(initial_size < 3) initial_size = 3;
     hash_set *hs = (hash_set*)malloc(sizeof(hash_set));
@@ -56,5 +63,11 @@ void hash_set_clear(hash_set **hs){
     }
     free((*hs)->set);
     free(*hs);
-    *hs = 
+    *hs = NULL;
+}
+
+
+int hash_set_put(hash_set* hs, const void *key, size_t key_size, unsigned int(*hash)(const void*, int) ,int (*compare)(const void*, const void*)){
+    if(! hs || ! key || ! hs->set) return 0;
+
 }
