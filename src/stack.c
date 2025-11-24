@@ -3,12 +3,15 @@
 #include<string.h>
 #include "../include/stack.h"
 
-void init(stack * s){
-    if(s)s->top = NULL;
+stack* stack_init(){
+    stack *s = (stack*)malloc(sizeof(stack));
+    if(!s) return NULL;
+    s->top = NULL;
+    return s;
 }
 
 int stack_is_empty(stack *s){
-    if(! s) return 0;
+    if(! s) return 1;
     return s->top == BOTTOM;
 }
 
@@ -63,7 +66,6 @@ void* stack_peek(stack* s){
 }
 
 int stack_search(stack* s, const void* data, int (*compare)(const void*, const void*)){
-    if(! s) return -1;
     if(stack_is_empty(s)) return -1;
 
     int index_of_target_node = -1, index = 1;
@@ -81,19 +83,21 @@ int stack_search(stack* s, const void* data, int (*compare)(const void*, const v
     return index_of_target_node ;
 }
 
-void stack_clear(stack* s){
-    if(! s) return;
-    stack_node *current = s->top;
-    while(s->top){
-        current = s->top;
-        s->top = s->top->next;
+void stack_clear(stack** s){
+    if(! *s) return;
+    stack_node *current = (*s)->top;
+    while((*s)->top){
+        current = (*s)->top;
+        (*s)->top = (*s)->top->next;
         free(current->data);
         free(current);
     }
-    init(s);
+    free(*s);
+    *s = NULL;
 }
 
 unsigned int stack_length(stack *s){
+    if(! s) return 0;
     unsigned int length = 0;
 
     stack_node *current = s->top;

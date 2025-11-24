@@ -3,8 +3,11 @@
 #include <string.h>
 #include "../include/doublylinkedlist.h"
 
-void init(doubly_linked_list *d_linked_list){
-    if(d_linked_list) d_linked_list->head = NULL;
+doubly_linked_list* doubly_linked_list_init(){
+    doubly_linked_list *dll = (doubly_linked_list*)malloc(sizeof(doubly_linked_list));
+    if(! dll) return NULL;
+    dll->head = NULL;
+    return dll;
 }
 
 doubly_linked_list* doubly_list_insert(doubly_linked_list* d_linked_list, const void *data, size_t size){
@@ -336,7 +339,7 @@ void doubly_list_clear(doubly_linked_list * d_linked_list){
         free(current->data);
         free(current);
     }
-    init(d_linked_list);
+    free(d_linked_list);
 }
 
 unsigned int doubly_list_length(doubly_linked_list* d_linked_list){

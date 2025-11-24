@@ -3,26 +3,28 @@
 #include<stdlib.h>
 #include "../include/hashtable.h"
 
-void hash_table_init(hash_table* ht, unsigned int initial_table_length){
-    if( !ht ) return;
-    if(initial_table_length < 1) return;
+hash_table* hash_table_init(unsigned int initial_table_length){
+    hash_table* ht = (hash_table*)malloc(sizeof(hash_table));
+    if(! ht ) return NULL;
+    if(initial_table_length < 2) initial_table_length = 2;
 
     // This will create the hash_map_array
     ht->table = (hash_table_node*)calloc(initial_table_length, sizeof(hash_table_node));
     if(!ht->table){
         fprintf(stderr, "Unable to allocate memory for hash table !\n");
-        return;
+        return NULL;
     }
     ht->length = initial_table_length;
+    return ht;
     // no need to assign null to all heads, calloc does this
 }
 
 int hash_table_put(hash_table* ht, const void *key, size_t key_size, const void *value, size_t value_size, unsigned int (*hash)(const void*, int), int (*compare)(const void *, const void*)){
     if(! ht || ! key || ! value ) return 0;
 
-    // if table is empty, initialize an hashtable of length 3
+    // if table is empty
     if( ! ht->table )
-        hash_table_init(ht, 3);
+       return 0;
 
     unsigned int index = hash(key, ht->length);
     
@@ -126,6 +128,7 @@ void hash_table_clear(hash_table *ht){
             free(previous);
         }
     }
+    free(ht);
 }
 
 int hash_table_contains_key(hash_table* ht, const void *key, unsigned int  (*hash)(const void*, int), int (*compare)(const void *, const void*)){
@@ -194,8 +197,8 @@ unsigned int hash_table_size(hash_table *ht){
 
 void rehash(hash_table* ht, unsigned int  (*hash)(const void*, int)){
     if (! ht || ! ht->table) return;
-    hash_table h;  
-    hash_table_init(&h, ht->length * 2); // create a new hash table of double size
+    hash_table *h;  
+    h = hash_table_init(ht->length * 2); // create a new hash table of double size
     int index ;
     node *current = NULL;
     node *next = NULL;
@@ -204,10 +207,10 @@ void rehash(hash_table* ht, unsigned int  (*hash)(const void*, int)){
         current = ht->table[i].head;
         while(current){
             next = current->next;
-            index = hash(current->key, h.length);
-            current->next = h.table[index].head;
-            h.table[index].head = current;
-            h.table[index].length++;
+            index = hash(current->key, h->length);
+            current->next = h->table[index].head;
+            h->table[index].head = current;
+            h->table[index].length++;
             current = next;
         }
     }
@@ -216,6 +219,7 @@ void rehash(hash_table* ht, unsigned int  (*hash)(const void*, int)){
     free(ht->table);
 
     // get pointers of the new table
-    ht->length = h.length;
-    ht->table = h.table;
+    ht->length = h->length;
+    ht->table = h->table;
+    free(h);
 }

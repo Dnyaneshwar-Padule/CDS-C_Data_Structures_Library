@@ -17,7 +17,7 @@ struct doubly_linked_list{
 typedef struct doubly_list_node doubly_list_node;
 typedef struct doubly_linked_list doubly_linked_list;
 
-void init(doubly_linked_list *d_liked_list);
+doubly_linked_list* doubly_linked_list_init();
 
 doubly_linked_list* doubly_list_insert(doubly_linked_list* d_linked_list, const void *data, size_t size);
 doubly_linked_list* doubly_list_insert_first(doubly_linked_list* d_linked_list, const void* data, size_t size);

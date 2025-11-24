@@ -3,8 +3,11 @@
 #include <string.h>
 #include "../include/linkedlist.h"
 
-void init(linked_list *l_list){
-    if(l_list) l_list->head = NULL;
+linked_list* list_init(){
+    linked_list *l_list = (linked_list*)malloc(sizeof(linked_list));
+    if(! l_list) return NULL; 
+    l_list->head = NULL;
+    return l_list;
 }
 
 linked_list* list_insert(linked_list* l_list, const void *data, size_t size)
@@ -347,7 +350,7 @@ void list_clear(linked_list * l_list){
         free(current->data);
         free(current);
     }
-    init(l_list);
+    free(l_list);
 }
 
 linked_list* list_clone(linked_list* dest, linked_list* src, size_t size){

@@ -12,7 +12,7 @@ struct linked_list{
 typedef struct list_node list_node;
 typedef struct linked_list linked_list;
 
-void init(linked_list *l_list);
+linked_list* list_init();
 void list_clear(linked_list * l_list);
 
 linked_list* list_insert(linked_list* l_list, const void *data, size_t size);
