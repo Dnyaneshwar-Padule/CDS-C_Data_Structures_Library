@@ -54,7 +54,7 @@ int hash_table_put(hash_table* ht, const void *key, size_t key_size, const void 
     memcpy(new_node->value, value, value_size);
     new_node->next = NULL;
 
-    // traverse
+
     current = ht->table[index].head;
     if(! current){
         ht->table[index].head = new_node;
