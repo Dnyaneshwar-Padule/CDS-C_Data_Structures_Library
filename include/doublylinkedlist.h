@@ -1,6 +1,5 @@
-#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
+#ifndef DOUBLY_LINKED_LIST_H
+#define DOUBLY_LINKED_LIST_H
 
 #define NEW_NODE() ((struct doubly_list_node*)malloc(sizeof(struct doubly_list_node)))
 
@@ -247,3 +246,7 @@ void doubly_list_clear(doubly_linked_list **d_linked_list);
  * @return The length of the doubly linked list
  */
 unsigned int doubly_list_length(doubly_linked_list* d_linked_list);
+
+
+
+#endif

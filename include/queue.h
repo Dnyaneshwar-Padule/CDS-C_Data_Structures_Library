@@ -1,3 +1,6 @@
+#ifndef QUEUE_H
+#define QUEUE_H
+
 
 #define NEW_NODE() ((struct queue_node*)malloc(sizeof(struct queue_node)))
 
@@ -91,3 +94,5 @@ int queue_is_empty(Queue *queue);
  */
 int search(Queue* queue, const void* data, int (*compare)(const void*, const void*));
 
+
+#endif

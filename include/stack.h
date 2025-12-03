@@ -1,3 +1,5 @@
+#ifndef STACK_H
+#define STACK_H
 
 #define NEW_NODE() ((stack_node*)malloc(sizeof(stack_node)))
 #define BOTTOM NULL
@@ -88,3 +90,6 @@ void stack_clear(stack** s);
  * @return The size of the stack
  */
 unsigned int stack_length(stack *s);
+
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef HASH_SET_H
+#define HASH_SET_H
+
 struct node{
     void *key;
     struct node* next;
@@ -38,7 +41,7 @@ void hash_set_clear(hash_set **hs);
 
 
 /**
- * @brief This function puts (inserts) new key in the hash table
+ * @brief This function adds (inserts) new key in the hash table
  * 
  * @param hs The hash set
  * @param key The key to add in the hash set
@@ -48,7 +51,7 @@ void hash_set_clear(hash_set **hs);
  *                 The compare function should return 0, if both parameters match with each other
  * @return 1 on success, 0 otherwise
  */
-int hash_set_put(hash_set* hs, const void *key, size_t key_size, unsigned int(*hash)(const void*, int) ,int (*compare)(const void*, const void*));
+int hash_set_add(hash_set* hs, const void *key, size_t key_size, unsigned int(*hash)(const void*, int) ,int (*compare)(const void*, const void*));
 
 
 
@@ -63,7 +66,7 @@ int hash_set_put(hash_set* hs, const void *key, size_t key_size, unsigned int(*h
  *                 The compare function should return 0, if both parameters match with each other
  * @return 1 if key exists, 0 otherwise
  */
-int hash_set_consists(hash_set* hs, const void *key, unsigned int(*hash)(const void*, int), int (*compare)(const void *, const void*) );
+int hash_set_contains(hash_set* hs, const void *key, unsigned int(*hash)(const void*, int), int (*compare)(const void *, const void*) );
 
 
 
@@ -97,3 +100,6 @@ unsigned int hash_set_size(hash_set *hs);
  * @param hash The hash function, which accepts key and hash set size and gives index (hashed value)
  */
 void rehash(hash_set *hs, unsigned int (*hash)(const void*, int));
+
+
+#endif

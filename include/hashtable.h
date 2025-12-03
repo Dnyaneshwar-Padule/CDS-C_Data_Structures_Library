@@ -1,3 +1,6 @@
+#ifndef HASH_TABLE_H
+#define HASH_TABLE_H
+
 #define NEW_NODE() ((struct node*)malloc(sizeof(struct node)))
 #define NEW_HASH_TABLE_NODE() (struct hash_table_node*)(malloc(sizeof(struct hash_table_node)))
 
@@ -116,3 +119,6 @@ void rehash(hash_table* ht, unsigned int  (*hash)(const void*, int));
 
 // clone()
 // containsValue()
+
+
+#endif

@@ -1,9 +1,5 @@
 /*
 
-#include<stdio.h>
-#include<stdlib.h>
-#include<string>
-
 #define NEW_NODE() ((struct circular_list_node*)malloc(sizeof(struct circular_list_node)))
 
 struct circular_list_node{

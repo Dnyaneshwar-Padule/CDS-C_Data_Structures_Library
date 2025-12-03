@@ -8,7 +8,7 @@ hash_table* hash_table_init(unsigned int initial_table_length){
     if(! ht ) return NULL;
     if(initial_table_length < 2) initial_table_length = 2;
 
-    // This will create the hash_map_array
+    // This will create array of hash table nodes
     ht->table = (hash_table_node*)calloc(initial_table_length, sizeof(hash_table_node));
     if(!ht->table){
         fprintf(stderr, "Unable to allocate memory for hash table !\n");
@@ -17,6 +17,27 @@ hash_table* hash_table_init(unsigned int initial_table_length){
     ht->length = initial_table_length;
     return ht;
     // no need to assign null to all heads, calloc does this
+}
+
+void* hash_table_get(hash_table *ht, const void *key, unsigned int  (*hash)(const void*, int), int (*compare)(const void *, const void*)){
+    if(! ht || ! ht->table || ! key)return NULL;
+    int index = hash(key, ht->length);
+    node* current = NULL;
+
+    //invalid index
+    if(index < 0 || index >= ht->length)
+        return NULL;
+
+    current = ht->table[index].head;
+
+    // search for the key
+    while ( current ){
+        if (compare(key, current->key) == 0){
+            return current->value;
+        }
+        current = current->next;
+    }
+    return NULL;
 }
 
 int hash_table_put(hash_table* ht, const void *key, size_t key_size, const void *value, size_t value_size, unsigned int (*hash)(const void*, int), int (*compare)(const void *, const void*)){
@@ -93,26 +114,6 @@ int hash_table_put(hash_table* ht, const void *key, size_t key_size, const void 
     return 1;
 }
 
-void* hash_table_get(hash_table *ht, const void *key, unsigned int  (*hash)(const void*, int), int (*compare)(const void *, const void*)){
-    if(! ht || ! ht->table || ! key)return NULL;
-    int index = hash(key, ht->length);
-    node* current = NULL;
-
-    //invalid index
-    if(index < 0 || index >= ht->length)
-        return NULL;
-
-    current = ht->table[index].head;
-
-    // search for the key
-    while ( current ){
-        if (compare(key, current->key) == 0){
-            return current->value;
-        }
-        current = current->next;
-    }
-    return NULL;
-}
 
 void hash_table_clear(hash_table **ht){
     if ( ! ht || ! (*ht)->table ) return;

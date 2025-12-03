@@ -40,7 +40,7 @@ void hash_set_clear(hash_set **hs){
 }
 
 
-int hash_set_put(hash_set* hs, const void *key, size_t key_size, unsigned int(*hash)(const void*, int) ,int (*compare)(const void*, const void*)){
+int hash_set_add(hash_set* hs, const void *key, size_t key_size, unsigned int(*hash)(const void*, int) ,int (*compare)(const void*, const void*)){
     if(! hs || ! key || ! hs->set) return 0;
 
     int index = hash(key, hs->length);
@@ -99,7 +99,7 @@ int hash_set_put(hash_set* hs, const void *key, size_t key_size, unsigned int(*h
 }
 
 
-int hash_set_consists(hash_set* hs, const void *key,unsigned int(*hash)(const void*, int), int (*compare)(const void *, const void*) ){
+int hash_set_contains(hash_set* hs, const void *key,unsigned int(*hash)(const void*, int), int (*compare)(const void *, const void*) ){
     if( ! hs || ! hs->set || ! key)  return 0;
 
     int index = hash(key, hs->length);

@@ -1,3 +1,6 @@
+#ifndef LINKED_LIST_H
+#define LINKED_LIST_H
+
 #define NEWNODE() ((struct list_node*)malloc(sizeof(struct list_node)))
 
 struct list_node{
@@ -250,3 +253,7 @@ linked_list* list_append(linked_list* head1, linked_list* head2);
  * @return The length of the linked list
  */
 unsigned int list_length(linked_list* l_list);
+
+
+
+#endif

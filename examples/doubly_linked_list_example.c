@@ -19,10 +19,12 @@ void print_list(doubly_list_node* head) {
 
 int main() {
 
+    // Creates a empty doubly linked list, gives it's address
     doubly_linked_list *d_linked_list  = doubly_linked_list_init() ;
 
     int a = 10, b = 20, c = 30, d = 40, e = 50;
 
+    //Inserting values at different positions
     printf("----- INSERT TESTS -----\n");
     doubly_list_insert_first(d_linked_list, &a, sizeof(int));   // 10
     doubly_list_insert_last(d_linked_list, &b, sizeof(int));   // 10 -> 20
@@ -34,12 +36,12 @@ int main() {
     printf("\n");
 
 
+    //fetching data
     printf("----- GET TESTS -----\n");
     printf("First element: %d\n", *(int*)doubly_list_first(d_linked_list));
     printf("Last element:  %d\n", *(int*)doubly_list_last(d_linked_list));
     printf("Element at 2:  %d\n", *(int*)doubly_list_get(d_linked_list, 2));
     printf("\n");
-
 
     printf("----- LENGTH TEST -----\n");
     printf("Length: %u\n\n", doubly_list_length(d_linked_list));

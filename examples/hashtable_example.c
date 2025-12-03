@@ -15,10 +15,12 @@ int compare(const void *a, const void *b){
 }
 
 int main(){
+    // Creating a empty hash table with capacity of 5
     hash_table *ht = hash_table_init(5);
     int key = 121;
     int value = 1;
 
+    // putting key value pairs
     hash_table_put(ht, &key, sizeof(int), &value, sizeof(int), hash, compare);
     key++; value ++;
     hash_table_put(ht, &key, sizeof(int), &value, sizeof(int), hash,compare);
@@ -36,6 +38,8 @@ int main(){
         printf("%d | ", ht->table[i].length);
     }printf("\n");
 
+
+    // fetching values by keys
     int *val = NULL;
     key = 121;
     val = (int*) hash_table_get(ht, &key, hash, compare);
@@ -94,6 +98,9 @@ int main(){
         printf("key %d | value %d\n", key, *val);
     }
 
+
+
+    // checking if keys exists in the hash table
     key = 130;
     printf("Key 130 : %d\n", hash_table_contains_key(ht, &key, hash, compare));
 
@@ -103,6 +110,9 @@ int main(){
     key = 120;
     printf("Key 120 : %d\n", hash_table_contains_key(ht, &key, hash, compare));
 
+
+
+    // Removing pairs from hash table
     key = 130;
     if(  hash_table_remove(ht, &key, hash, compare) ){
         printf("key %d is removed !\n", key);
@@ -140,6 +150,8 @@ int main(){
         printf("%d | ", ht->table[i].length);
     }printf("\n");
 
+
+    // clearing hash table
     hash_table_clear(&ht);
     printf("Hash table cleared...\n");
     return 0;
