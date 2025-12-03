@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include "../include/hashset.h"
+#include "../include/hash_set.h"
 
 int compare(const void *a, const void *b) {
     int x = *(int*)a;

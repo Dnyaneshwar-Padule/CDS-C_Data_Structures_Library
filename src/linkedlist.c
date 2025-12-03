@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../include/linkedlist.h"
+#include "../include/linked_list.h"
 
 linked_list* list_init(){
     linked_list *l_list = (linked_list*)malloc(sizeof(linked_list));

@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#include "../include/hashset.h"
+#include "../include/hash_set.h"
 
 
 hash_set* hash_set_init(unsigned int initial_size){

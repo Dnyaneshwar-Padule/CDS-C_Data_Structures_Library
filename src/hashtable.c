@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
-#include "../include/hashtable.h"
+#include "../include/hash_table.h"
 
 hash_table* hash_table_init(unsigned int initial_table_length){
     hash_table* ht = (hash_table*)malloc(sizeof(hash_table));

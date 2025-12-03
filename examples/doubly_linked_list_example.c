@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "../include/doublylinkedlist.h"
+#include "../include/doubly_linked_list.h"
 
 // Compare function for integers
 int compare_int(const void* a, const void* b) {

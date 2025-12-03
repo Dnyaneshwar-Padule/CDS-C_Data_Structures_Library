@@ -1,0 +1,4 @@
+/*
+    It can be used as ordered dictionary 
+    Like a TreeSet
+*/

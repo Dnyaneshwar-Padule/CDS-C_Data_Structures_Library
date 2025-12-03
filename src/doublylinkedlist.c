@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../include/doublylinkedlist.h"
+#include "../include/doubly_linked_list.h"
 
 doubly_linked_list* doubly_linked_list_init(){
     doubly_linked_list *dll = (doubly_linked_list*)malloc(sizeof(doubly_linked_list));
