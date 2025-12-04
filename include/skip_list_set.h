@@ -99,4 +99,19 @@ unsigned long skip_list_set_size(skip_list_set *list_set );
  */
 void skip_list_set_clear(skip_list_set **list_set);
 
+
+
+/**
+ * @brief This function creates a new node for skip list set
+ * 
+ * @param level The level of the node
+ * @param key The key of the node
+ * @param size The size of the key
+ * @param next The next node 
+ * @param down The down node
+ * 
+ * @return address of new node
+ */
+skip_list_set_node* skip_list_set_create_new_node(long level, const void * key, size_t size, skip_list_set_node *next, skip_list_set_node *down);
+
 #endif

@@ -2,8 +2,6 @@
 #include<stdlib.h>
 #include<string.h>
 #include <time.h>
-
-#include<time.h>
 #include "../include/skip_list_set.h"
 
 skip_list_set* skip_list_set_init(){
@@ -21,8 +19,8 @@ skip_list_set* skip_list_set_init(){
         return NULL;
     }
     
-    list_set->size = 0;
-    list_set->p = 0.5;
+    list_set->size = 0; // initial size of set
+    list_set->p = 0.5;  // coin flip
     
     list_set->head = NEW_CLEAR_NODE;
     if(! list_set->head){
@@ -36,10 +34,23 @@ skip_list_set* skip_list_set_init(){
 
 int random_level(skip_list_set *list_set) {
     int level = 0;
-    while ((float)rand() / RAND_MAX < list_set->p && level <= list_set->size) {
+    while ((float)rand() / RAND_MAX < list_set->p && level <= list_set->head->level) {
         level++;
     }
     return level;
+}
+
+skip_list_set_node* skip_list_set_create_new_node(long level, const void * key, size_t size, skip_list_set_node *next, skip_list_set_node *down){
+    skip_list_set_node *node = NEWNODE;
+    node->level = level;
+    node->down = down;
+    node->next = next;
+    
+    if(key && size){
+        node->key = malloc(size);
+        memcpy(node->key, key, size);
+    }
+    return node;
 }
 
 
@@ -49,14 +60,8 @@ int skip_list_set_add(skip_list_set *list_set, const void *key, size_t size, int
 
     int level = random_level(list_set);
 
-    printf("Level : %d\n", level);
-
     if(level > list_set->head->level){
-        skip_list_set_node *n = NEW_CLEAR_NODE;
-        n->level = level;
-        n->next = NULL;
-        n->down = list_set->head;
-        list_set->head = n;
+       list_set->head = skip_list_set_create_new_node(level, NULL, 0, NULL, list_set->head);
     }
 
     skip_list_set_node *current = list_set->head, *last = NULL;
@@ -64,16 +69,10 @@ int skip_list_set_add(skip_list_set *list_set, const void *key, size_t size, int
     while (current){
         if(! current->next || compare(current->next->key, key) > 0){
             if(level >= current->level){
-                skip_list_set_node *node = NEW_CLEAR_NODE;
-                node->key = malloc(size);
-                memcpy(node->key, key, size);
-                node->level = current->level;
-                node->next = current->next;
-                node->down = NULL;
-                
+                skip_list_set_node *node = skip_list_set_create_new_node(current->level, key, size, current->next, NULL);
                 if(last)
                     last->down = node;
-                
+        
                 current->next = node;
                 last = node;
             }
@@ -81,6 +80,7 @@ int skip_list_set_add(skip_list_set *list_set, const void *key, size_t size, int
             continue;
         }
         else if (compare(current->next->key, key) == 0){
+            if(last) last->down = current->next;   // very important.....
             return 0;
         }
         current = current->next;
@@ -145,20 +145,20 @@ unsigned long skip_list_set_size(skip_list_set *list_set ){
 
 void skip_list_set_clear(skip_list_set **list_set){
     if(! list_set || ! *list_set) return;
-
+    
     skip_list_set_node *current = (*list_set)->head, *next = NULL, *down = NULL;
 
     while (current){
         down = current->down;
-
         while (current){
             next = current->next;
-            if(current->key)free(current->key);
+            if(current->key)
+                free(current->key);
             free(current);
             current = next;
         }
         current = down;
     }
-
+    
     free(*list_set);
 }

@@ -8,17 +8,20 @@ int compare(const void *a, const void *b){
 }
 
 void print_set(skip_list_set *set){
-    skip_list_set_node *current = set->head;
+    skip_list_set_node *current = set->head, *down = NULL;
 
-    while (current->down)
-        current = current->down;
-    
-    while (current->next){
-        printf("%d -> ", *((int*)current->next->key));
-        current = current->next;
+    printf("\n");
+    while (current){
+        down = current->down;
+        printf("Level %d:", current->level);
+        while (current->next){
+            printf("%d -> ", *((int*)current->next->key));
+            current = current->next;
+        }
+        printf("NULL \n");
+        current  = down;
     }
     
-    printf("NULL \n");
 }
 
 int main(){
