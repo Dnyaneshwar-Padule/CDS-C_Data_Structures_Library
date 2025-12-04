@@ -267,7 +267,13 @@ doubly_linked_list* doubly_list_remove_value(doubly_linked_list* d_linked_list, 
     return d_linked_list;
 }
 
-doubly_linked_list* doubly_list_update(doubly_linked_list* d_linked_list, const void *old_data, const void *new_data, size_t size, int (*compare)(const void*, const void*) ){
+doubly_linked_list* doubly_list_update(
+    doubly_linked_list* d_linked_list, 
+    const void *old_data, 
+    const void *new_data, 
+    size_t size, 
+    int (*compare)(const void*, const void*) 
+){
     if(! d_linked_list) return NULL;
     if( ! d_linked_list->head) return NULL;
 

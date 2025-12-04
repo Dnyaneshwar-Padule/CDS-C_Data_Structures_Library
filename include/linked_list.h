@@ -212,7 +212,13 @@ linked_list* list_remove_value(linked_list* l_list, const void *value, int (*com
  *                 The compare function should return 0, if both parameters match with each other
  * @return linked_list* on Success, NULL otherwise
  */
-linked_list* list_update(linked_list* l_list, const void *old_data, const void *new_data, size_t size, int (*compare)(const void*, const void*) );
+linked_list* list_update(
+    linked_list* l_list, 
+    const void *old_data, 
+    const void *new_data, 
+    size_t size, 
+    int (*compare)(const void*, const void*) 
+);
 
 
 /**

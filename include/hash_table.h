@@ -57,7 +57,15 @@ void hash_table_clear(hash_table **ht);
  *                  The compare function should return 0 if both values are equal
  * @return 1 On success, 0 otherwise 
  */
-int hash_table_put(hash_table* ht, const void *key, size_t key_size, const void *value, size_t value_size, unsigned int  (*hash)(const void*, int), int (*compare)(const void *, const void*));
+int hash_table_put(
+    hash_table* ht, 
+    const void *key, 
+    size_t key_size, 
+    const void *value, 
+    size_t value_size, 
+    unsigned int  (*hash)(const void*, int), 
+    int (*compare)(const void *, const void*)
+);
 
 
 /**
@@ -70,7 +78,12 @@ int hash_table_put(hash_table* ht, const void *key, size_t key_size, const void 
  *                  The compare function should return 0 if both values are equal
  * @return 1 if the key exists, 0 otherwise 
  */
-int hash_table_contains_key(hash_table* ht, const void *key, unsigned int  (*hash)(const void*, int), int (*compare)(const void *, const void*));
+int hash_table_contains_key(
+    hash_table* ht, 
+    const void *key, 
+    unsigned int  (*hash)(const void*, int), 
+    int (*compare)(const void *, const void*)
+);
 
 
 /**
@@ -83,7 +96,12 @@ int hash_table_contains_key(hash_table* ht, const void *key, unsigned int  (*has
  *                  The compare function should return 0 if both values are equal
  * @return 1 on success, 0 otherwise
  */
-int hash_table_remove(hash_table *ht, const void *key, unsigned int  (*hash)(const void*, int), int (*compare)(const void *, const void*));
+int hash_table_remove(
+    hash_table *ht, 
+    const void *key, 
+    unsigned int  (*hash)(const void*, int), 
+    int (*compare)(const void *, const void*)
+);
 
 
 /**
@@ -96,7 +114,12 @@ int hash_table_remove(hash_table *ht, const void *key, unsigned int  (*hash)(con
  *                  The compare function should return 0 if both values are equal
  * @return address of data, NULL if the key doesn't exists
  */
-void* hash_table_get(hash_table *ht, const void *key, unsigned int  (*hash)(const void*, int), int (*compare)(const void *, const void*));
+void* hash_table_get(
+    hash_table *ht, 
+    const void *key, 
+    unsigned int  (*hash)(const void*, int), 
+    int (*compare)(const void *, const void*)
+);
 
 
 /**

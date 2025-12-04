@@ -31,7 +31,10 @@ doubly_linked_list* doubly_linked_list_init();
  * @param size The size of the data, so that it can copy the data into node
  * @return doubly_linked_list* on Success, NULL otherwise
  */
-doubly_linked_list* doubly_list_insert(doubly_linked_list* d_linked_list, const void *data, size_t size);
+doubly_linked_list* doubly_list_insert(
+    doubly_linked_list* d_linked_list, 
+    const void *data, size_t size
+);
 
 
 /**
@@ -42,7 +45,10 @@ doubly_linked_list* doubly_list_insert(doubly_linked_list* d_linked_list, const 
  * @param size The size of the data, so that it can copy the data into node
  * @return doubly_linked_list* on Success, NULL otherwise 
  */
-doubly_linked_list* doubly_list_insert_first(doubly_linked_list* d_linked_list, const void* data, size_t size);
+doubly_linked_list* doubly_list_insert_first(
+    doubly_linked_list* d_linked_list, 
+    const void* data, size_t size
+);
 
 
 /**
@@ -53,7 +59,10 @@ doubly_linked_list* doubly_list_insert_first(doubly_linked_list* d_linked_list, 
  * @param size The size of the data, so that it can copy the data into node
  * @return doubly_linked_list* on Success, NULL otherwise
  */
-doubly_linked_list* doubly_list_insert_last(doubly_linked_list* d_linked_list, const void *data, size_t size );
+doubly_linked_list* doubly_list_insert_last(
+    doubly_linked_list* d_linked_list, 
+    const void *data, size_t size 
+);
 
 
 /**
@@ -65,7 +74,11 @@ doubly_linked_list* doubly_list_insert_last(doubly_linked_list* d_linked_list, c
  * @param index The index where the node will be inserted
  * @return doubly_linked_list* on Success, NULL otherwise
  */
-doubly_linked_list* doubly_list_insert_at(doubly_linked_list* d_linked_list, const void* data, size_t size, unsigned int index);
+doubly_linked_list* doubly_list_insert_at(
+    doubly_linked_list* d_linked_list, 
+    const void* data, size_t size, 
+    unsigned int index
+);
 
 
 /**
@@ -76,7 +89,10 @@ doubly_linked_list* doubly_list_insert_at(doubly_linked_list* d_linked_list, con
  * @param index The indec of the node
  * @return doubly_list_node* The address of node on Success, NULL otherwise
  */
-doubly_list_node* doubly_list_get_node(doubly_linked_list* d_linked_list, unsigned const int index);
+doubly_list_node* doubly_list_get_node(
+    doubly_linked_list* d_linked_list, 
+    unsigned const int index
+);
 
 
 /**
@@ -118,7 +134,11 @@ void* doubly_list_last(doubly_linked_list *d_linked_list);
  *                 The compare function should return 0, if both parameters match with each other
  * @return The first index of the node, -1 if data not found
  */
-int doubly_list_index_of(doubly_linked_list* d_linked_list, const void *data, int (*compare)(const void*, const void*));
+int doubly_list_index_of(
+    doubly_linked_list* d_linked_list, 
+    const void *data, 
+    int (*compare)(const void*, const void*)
+);
 
 
 /**
@@ -131,7 +151,11 @@ int doubly_list_index_of(doubly_linked_list* d_linked_list, const void *data, in
  *                 The compare function should return 0, if both parameters match with each other
  * @return The last index of the node, -1 if data not found 
  */
-int doubly_list_last_index_of(doubly_linked_list* d_linked_list, const void *data, int (*compare)(const void*, const void*));
+int doubly_list_last_index_of(
+    doubly_linked_list* d_linked_list, 
+    const void *data, 
+    int (*compare)(const void*, const void*)
+);
 
 
 /**
@@ -143,7 +167,11 @@ int doubly_list_last_index_of(doubly_linked_list* d_linked_list, const void *dat
  *                 The compare function should return 0, if both parameters match with each other
  * @return 1 if data found, 0 otherwise
  */
-int doubly_list_contains(doubly_linked_list* d_linked_list, const void *data, int (*compare)(const void*, const void*));
+int doubly_list_contains(
+    doubly_linked_list* d_linked_list, 
+    const void *data, 
+    int (*compare)(const void*, const void*)
+);
 
 
 /**
@@ -172,7 +200,10 @@ doubly_linked_list* doubly_list_remove_last(doubly_linked_list* d_linked_list);
  * @param index The index of the node
  * @return doubly_linked_list* on Success, NULL otherwise
  */
-doubly_linked_list* doubly_list_remove_at(doubly_linked_list* d_linked_list, unsigned const int index);
+doubly_linked_list* doubly_list_remove_at(
+    doubly_linked_list* d_linked_list, 
+    unsigned const int index
+);
 
 
 /**
@@ -185,7 +216,11 @@ doubly_linked_list* doubly_list_remove_at(doubly_linked_list* d_linked_list, uns
  *                 The compare function should return 0, if both parameters match with each other
  * @return  doubly_linked_list On success, NULL otherwise
  */
-doubly_linked_list* doubly_list_remove_value(doubly_linked_list* d_linked_list, const void *value, int (*compare)(const void*, const void*));
+doubly_linked_list* doubly_list_remove_value(
+    doubly_linked_list* d_linked_list, 
+    const void *value, 
+    int (*compare)(const void*, const void*)
+);
 
 
 /**
@@ -199,7 +234,12 @@ doubly_linked_list* doubly_list_remove_value(doubly_linked_list* d_linked_list, 
  *                 The compare function should return 0, if both parameters match with each other
  * @return doubly_linked_list* on Success, NULL otherwise
  */
-doubly_linked_list* doubly_list_update(doubly_linked_list* d_linked_list, const void *old_data, const void *new_data, size_t size, int (*compare)(const void*, const void*) );
+doubly_linked_list* doubly_list_update(
+    doubly_linked_list* d_linked_list, 
+    const void *old_data, 
+    const void *new_data, size_t size, 
+    int (*compare)(const void*, const void*)
+);
 
 
 /**

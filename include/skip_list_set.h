@@ -40,7 +40,7 @@ skip_list_set* skip_list_set_init();
  * @param
  * @return a random level
  */
-int random_level(skip_list_set *list_set);
+int skip_list_set_random_level(skip_list_set *list_set);
 
 
 /**
@@ -54,7 +54,11 @@ int random_level(skip_list_set *list_set);
  * 
  * @return 1 on success, 0 on failure or duplicate element
  */
-int skip_list_set_add(skip_list_set *list_set, const void *key, size_t size, int (*compare)(const void*, const void*));
+int skip_list_set_add(skip_list_set *list_set, 
+    const void *key, 
+    size_t size, 
+    int (*compare)(const void*, const void*)
+);
 
 
 
@@ -62,25 +66,33 @@ int skip_list_set_add(skip_list_set *list_set, const void *key, size_t size, int
  * @brief This function checks if the key (element) exists in the set
  * 
  * @param list_set skip list set
- * @param key Element to add
+ * @param key Element to search
  * @param compare The compare function, which will compare given data with the data in the nodes, \n
  *                 The compare function should return 0, if both parameters match with each other
  * @return 1 if key exists, 0 otherwise
  */
-int skip_list_set_contains(skip_list_set *list_set, const void* key, int (*compare)(const void*, const void*));
+int skip_list_set_contains(
+    skip_list_set *list_set, 
+    const void* key, 
+    int (*compare)(const void*, const void*)
+);
 
 
 /**
  * @brief This function removes a key from the list set
  * 
  * @param list_set skip list set
- * @param key Element to add
+ * @param key Key to remove
  * @param compare The compare function, which will compare given data with the data in the nodes, \n
  *                 The compare function should return 0, if both parameters match with each other
  * 
  * @return 1 on success, 0 otherwise
  */
-int skip_list_set_remove(skip_list_set *list_set, const void *key, int (*compare)(const void*, const void*));
+int skip_list_set_remove(
+    skip_list_set *list_set, 
+    const void *key, 
+    int (*compare)(const void*, const void*)
+);
 
 
 /**
@@ -112,6 +124,12 @@ void skip_list_set_clear(skip_list_set **list_set);
  * 
  * @return address of new node
  */
-skip_list_set_node* skip_list_set_create_new_node(long level, const void * key, size_t size, skip_list_set_node *next, skip_list_set_node *down);
+skip_list_set_node* skip_list_set_create_new_node(
+    long level, 
+    const void * key, 
+    size_t size, 
+    skip_list_set_node *next, 
+    skip_list_set_node *down
+);
 
 #endif

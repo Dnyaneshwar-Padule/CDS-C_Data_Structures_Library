@@ -32,7 +32,7 @@ skip_list_set* skip_list_set_init(){
 }
 
 
-int random_level(skip_list_set *list_set) {
+int skip_list_set_random_level(skip_list_set *list_set) {
     int level = 0;
     while ((float)rand() / RAND_MAX < list_set->p && level <= list_set->head->level) {
         level++;
@@ -58,7 +58,7 @@ int skip_list_set_add(skip_list_set *list_set, const void *key, size_t size, int
     if(! list_set || ! key)
         return 0;
 
-    int level = random_level(list_set);
+    int level = skip_list_set_random_level(list_set);
 
     if(level > list_set->head->level){
        list_set->head = skip_list_set_create_new_node(level, NULL, 0, NULL, list_set->head);

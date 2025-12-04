@@ -40,7 +40,15 @@ void* hash_table_get(hash_table *ht, const void *key, unsigned int  (*hash)(cons
     return NULL;
 }
 
-int hash_table_put(hash_table* ht, const void *key, size_t key_size, const void *value, size_t value_size, unsigned int (*hash)(const void*, int), int (*compare)(const void *, const void*)){
+int hash_table_put(
+    hash_table* ht, 
+    const void *key, 
+    size_t key_size, 
+    const void *value, 
+    size_t value_size,
+    unsigned int (*hash)(const void*, int), 
+    int (*compare)(const void *, const void*)
+){
     if(! ht || ! key || ! value ) return 0;
 
     // if table is empty
@@ -134,7 +142,13 @@ void hash_table_clear(hash_table **ht){
     *ht = NULL;
 }
 
-int hash_table_contains_key(hash_table* ht, const void *key, unsigned int  (*hash)(const void*, int), int (*compare)(const void *, const void*)){
+int hash_table_contains_key(
+    hash_table* ht, 
+    const void *key, 
+    unsigned int  (*hash)(const void*, int), 
+    int (*compare)(const void *, const void*)
+){
+    
     if(! ht || ! ht->table || ! key)return 0;
     int index = hash(key, ht->length);
     if(index < 0 || index >= ht->length) return 0;
