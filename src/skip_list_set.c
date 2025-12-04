@@ -161,4 +161,5 @@ void skip_list_set_clear(skip_list_set **list_set){
     }
     
     free(*list_set);
+    *list_set = NULL;
 }

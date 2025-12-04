@@ -15,7 +15,7 @@ void print_set(skip_list_set *set){
         down = current->down;
         printf("Level %d:", current->level);
         while (current->next){
-            printf("%d -> ", *((int*)current->next->key));
+            printf("%d (%2d)-> ", *((int*)current->next->key), current->next->down ?  *((int*)current->next->down->key) : 0);
             current = current->next;
         }
         printf("NULL \n");
